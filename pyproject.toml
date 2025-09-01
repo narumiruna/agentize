@@ -30,6 +30,10 @@ markitdown = [
 all = [
     "langfuse>=2.60.5",
     "markitdown>=0.1.1",
+    "openai-agents[litellm]>=0.0.14",
+]
+litellm = [
+    "openai-agents[litellm]>=0.0.14",
 ]
 
 [build-system]
