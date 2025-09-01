@@ -90,12 +90,12 @@ pre-commit run --all-files
 
 ```sh
 # OpenAI compatible API
-# export OPENAI_BASE_URL="..."
-# export OPENAI_API_KEY="..."
+export OPENAI_BASE_URL="..."
+export OPENAI_API_KEY="..."
 
 # OpenAI
-# export OPENAI_MODEL="gpt-4o-mini"
-# export OPENAI_API_KEY="sk-..."
+export OPENAI_MODEL="gpt-4o-mini"
+export OPENAI_API_KEY="sk-..."
 
 # Gemini (Google Generative AI)
 export OPENAI_API_KEY="GOOGLE_API_KEY"
@@ -123,6 +123,11 @@ export AZURE_OPENAI_ENDPOINT="..."
 export OPENAI_MODEL="gpt-4.1"
 # see https://learn.microsoft.com/azure/ai-services/openai/api-version-deprecation for more details
 export OPENAI_API_VERSION="2025-03-01-preview"
+
+# LiteLLM
+# uv add agentize[litellm]
+export OPENAI_BASE_URL="..."
+export LITELLM_API_KEY="..."
 ```
 
 We follow the same environment variable conventions used by the official OpenAI and Azure OpenAI SDKs. This ensures a seamless integration experience and consistency across environments. The only difference is that if the environment variable AZURE_OPENAI_API_KEY is present, AzureOpenAI will be used. Below is a list of supported environment variables for each client, along with their descriptions and usage examples.
