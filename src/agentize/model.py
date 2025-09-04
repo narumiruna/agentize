@@ -13,6 +13,11 @@ from openai import AsyncAzureOpenAI
 from openai import AsyncOpenAI
 from openai.types import ChatModel
 
+try:
+    from agents.extensions.models.litellm_model import LitellmModel
+except ImportError:
+    logger.warning("LiteLLM model is not available. Install it with 'uv add agentize[litellm]'.")
+
 
 @cache
 def get_openai_client() -> AsyncOpenAI:
@@ -45,8 +50,11 @@ def get_openai_model(
     if model is None:
         model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 
-    openai_client = get_openai_client()
+    litellm_api_key = os.getenv("LITELLM_API_KEY")
+    if litellm_api_key:
+        return LitellmModel(model=model, api_key=litellm_api_key)
 
+    openai_client = get_openai_client()
     match api_type:
         case "responses":
             return OpenAIResponsesModel(model, openai_client=openai_client)
